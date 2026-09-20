@@ -202,7 +202,7 @@ function applyDynamicBranding() {
 
   const brandSubEl = document.querySelector('.header-subtitle');
   if (brandSubEl && cfg.storeName) {
-    brandSubEl.innerHTML = `⊹ &nbsp;♡ྀི &nbsp;<b>${cfg.storeName}</b>⠀𓉳 &nbsp;❤️︎ &nbsp;⊹ ⎯⎯⎯ &nbsp;🎀🪞 laman terpercaya dengan aplikasi premium berkualitas 🕯️🌸 ⊹ ⊹ menyajikan pelayanan bintang lima ✿ ⊹ ⁺ 𝜗ৎ &nbsp;𓌔𓌔𓌔 &nbsp;˖˚ welcome to ethereal page! ♡⠀𝜗ৎ⠀⊹`;
+    brandSubEl.innerHTML = `⠀╭──  hello nona manies disini 𓏲𝄢𓂃 menyediakan aplikasi premium, coin line, instax polaroid : terpercaya sejak 2021 ʾʿ   ܸ 🎀 semua bisa kamu temukan di toko manies ku !`;
   }
 
   // 3. Safe Text Nodes Traversal & Replacement

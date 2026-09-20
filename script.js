@@ -237,23 +237,17 @@ function buildSingleVariantWALink(v, defaultWaGroup) {
   const priceIDR = formatIDR(v.harga);
   const fullNama = getFullProductName(v);
 
-  const text = `𓉳  ❤️︎  ⋆ 𓌔𓌔𓌔⠀${storeName} 𝐵𝑖𝑙𝑙  ࣪   .𖥔 ݁ ˖ 
-︶︶︶ ⊹ ︶︶︶ ୨♡୧ ︶︶︶ ⊹ ︶︶︶ 
+  const text = `♡ ₊  ꒰ ${storeName} 𝐵𝑖𝑙𝑙
 
-˚യ  ៶៲៸  🕯️  halo, aku mau pesan ini  Ი ⑅ ♡
-୨୧⠀⊹  🪞  payment  :  dana/qris/spay ♡ ︵ ⊹⠀୨୧
+hai kaka manies, aku mau order ini ya (!) bisa dibantu proses ya kakak 👛 ︵ 
 
- ⊹  ♡⌇ 🎀  nama   :  Nama Pemesan
- ⊹  ♡⌇ 🌸  waktu  :  ${dateTimeFormatted}
+⊹ ⎯ ꒰꒰ detail pesanan : ${fullNama} (IDR. ${priceIDR})
+⊹ ⎯ ꒰꒰ waktu : ${dateTimeFormatted}
+⊹ ⎯ ꒰꒰  total order : IDR. ${priceIDR}
 
-𓇚⠀✿  detail pesanan
-    ⊹ ꒰ 𓈒 ⓘ  pesanan 1  :  ${fullNama}  :  IDR. ${priceIDR}
+tunggu sebentar yaa pesanan mu sudah masuk, akan aku balas secepatnya 🌷 terima kasih kak 
 
-⊹ ⎯⎯⎯  ꒰꒰  𓉸ྀི  total order : IDR. ${priceIDR}
-
-🦢 ⁞ ⠀⁺ ⊹    thank you for purchase in ${storeName}, may your day blooming like flower 🌷 ⊹ ⊹ 
-
- ⊹ ⎯⎯⎯  with love, ${storeName} 𓈒 ꒱⠀⊹ 𓇚⠀✿`;
+ ⊹ ⎯⎯⎯  with love, ${storeName} 𓈒 ꒱⠀⊹`;
 
   const rawWa = (v.wa || defaultWaGroup || DEFAULT_WA).toString().replace(/[^0-9]/g, '');
   return `https://wa.me/${rawWa}?text=${encodeURIComponent(text)}`;
@@ -587,28 +581,23 @@ function updateCartUI() {
     const itemSub = formatIDR((ci.harga || 0) * (ci.qty || 1));
     const qtyLabel = ci.qty > 1 ? ` (${ci.qty}x)` : '';
     const fullNama = getFullProductName(ci);
-    return `    ⊹ ꒰ 𓈒 ⓘ  pesanan ${i + 1}  :  ${fullNama}${qtyLabel}  :  IDR. ${itemSub}`;
+    return `      - ${fullNama}${qtyLabel} (IDR. ${itemSub})`;
   }).join('\n');
 
   const totalIDR = formatIDR(total);
 
-  const text = `𓉳  ❤️︎  ⋆ 𓌔𓌔𓌔⠀${storeName} 𝐵𝑖𝑙𝑙  ࣪   .𖥔 ݁ ˖ 
-︶︶︶ ⊹ ︶︶︶ ୨♡୧ ︶︶︶ ⊹ ︶︶︶ 
+  const text = `♡ ₊  ꒰ ${storeName} 𝐵𝑖𝑙𝑙
 
-˚യ  ៶៲៸  🕯️  halo, aku mau pesan ini  Ი ⑅ ♡
-୨୧⠀⊹  🪞  payment  :  ${paymentVal} ♡ ︵ ⊹⠀୨୧
+hai kaka manies, aku mau order ini ya (!) bisa dibantu proses ya kakak 👛 ︵ 
 
- ⊹  ♡⌇ 🎀  nama   :  ${buyerName}
- ⊹  ♡⌇ 🌸  waktu  :  ${dateTimeFormatted}
-
-𓇚⠀✿  detail pesanan
+⊹ ⎯ ꒰꒰ detail pesanan : 
 ${detailPesananLines}
+⊹ ⎯ ꒰꒰ waktu : ${dateTimeFormatted}
+⊹ ⎯ ꒰꒰  total order : IDR. ${totalIDR}
 
-⊹ ⎯⎯⎯  ꒰꒰  𓉸ྀི  total order : IDR. ${totalIDR}
+tunggu sebentar yaa pesanan mu sudah masuk, akan aku balas secepatnya 🌷 terima kasih kak 
 
-🦢 ⁞ ⠀⁺ ⊹    thank you for purchase in ${storeName}, may your day blooming like flower 🌷 ⊹ ⊹ 
-
- ⊹ ⎯⎯⎯  with love, ${storeName} 𓈒 ꒱⠀⊹ 𓇚⠀✿`;
+ ⊹ ⎯⎯⎯  with love, ${storeName} 𓈒 ꒱⠀⊹`;
 
   const uniqueWAs = [...new Set(cart.map(c => c.wa || DEFAULT_WA))];
   const waTarget = uniqueWAs.length === 1 ? uniqueWAs[0] : DEFAULT_WA;
