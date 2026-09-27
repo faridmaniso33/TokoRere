@@ -3,6 +3,7 @@ window.CONFIG = {
   // Store Details
   storeName: "Toko Rere", // Full Store Name
   shortStoreName: "Toko Rere",
+  storeSubtitle: "⠀╭── hello nona manies disini, selamat datang di toko manies ku 𓂃 menyediakan aplikasi premium, coin line, instax polaroid : terpercaya sejak 2021 ʾʿ ܸ 🎀 semua bisa kamu temukan di toko manies ku ! ♡ ๑ ꒰ Jam Operasional : Setiap Hari 08.00 - 22.00 Wib ꒱",
   whatsappNumber: "6281350758516", // Format: 62xxxxxxxxxx (no + or spaces)
   telegramUsername: "Mavhdu",
   telegramLink: "https://t.me/rainstoreproof",
@@ -201,8 +202,11 @@ function applyDynamicBranding() {
   }
 
   const brandSubEl = document.querySelector('.header-subtitle');
-  if (brandSubEl && cfg.storeName) {
-    brandSubEl.innerHTML = `⠀╭──  hello nona manies disini 𓏲𝄢𓂃 menyediakan aplikasi premium, coin line, instax polaroid : terpercaya sejak 2021 ʾʿ   ܸ 🎀 semua bisa kamu temukan di toko manies ku !`;
+  if (brandSubEl) {
+    if (cfg.storeSubtitle) {
+      brandSubEl.innerHTML = cfg.storeSubtitle;
+    }
+    // If cfg.storeSubtitle is not explicitly defined, preserve the text set in index.html
   }
 
   // 3. Safe Text Nodes Traversal & Replacement
