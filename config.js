@@ -3,7 +3,7 @@ window.CONFIG = {
   // Store Details
   storeName: "Toko Rere", // Full Store Name
   shortStoreName: "Toko Rere",
-  storeSubtitle: "⠀╭── hello nona manies disini, selamat datang di toko manies ku 𓂃 menyediakan aplikasi premium, coin line, instax polaroid : terpercaya sejak 2021 ʾʿ ܸ 🎀 semua bisa kamu temukan di toko manies ku ! ♡ ๑ ꒰ Jam Operasional : Setiap Hari 08.00 - 22.00 Wib ꒱",
+  storeSubtitle: "⠀hello selamat datang di Toko manies ku, kami akan melayani sepenuh hati dari pukul 08.00 - 22.00 Wib. terpercaya sejak 2021 ♡",
   whatsappNumber: "6281350758516", // Format: 62xxxxxxxxxx (no + or spaces)
   telegramUsername: "Mavhdu",
   telegramLink: "https://t.me/rainstoreproof",
@@ -171,150 +171,11 @@ function hexToRgb(hex) {
 }
 
 function applyDynamicBranding() {
+  // Hanya menerapkan sinkronisasi minimal jika elemen belum diset di HTML
   const cfg = window.CONFIG;
   if (!cfg) return;
 
-  // 1. Update Document Title
-  if (cfg.storeName) {
-    document.title = `${cfg.storeName} — Premium Apps`;
-  }
-
-  // 2. Direct Header Brand Element Updates
-  const brandTitleEl = document.querySelector('.header-title');
-  if (brandTitleEl && cfg.storeName) {
-    let name = cfg.storeName.trim();
-    let parts = name.split(/\s+/).filter(Boolean);
-    if (parts.length === 1) {
-      parts = name.split(/(?<=[a-z])(?=[A-Z])/).filter(Boolean);
-    }
-    if (parts.length >= 2) {
-      const last = parts.pop();
-      brandTitleEl.innerHTML = `${parts.join(' ')} <em>${last}</em>`;
-    } else {
-      brandTitleEl.innerHTML = `${name} <em>Store</em>`;
-    }
-  }
-
-  const brandRightEl = document.querySelector('.header-right-text');
-  if (brandRightEl && cfg.storeName) {
-    const year = new Date().getFullYear();
-    brandRightEl.textContent = `${cfg.storeName} · Premium Apps · ${year}`;
-  }
-
-  const brandSubEl = document.querySelector('.header-subtitle');
-  if (brandSubEl) {
-    if (cfg.storeSubtitle) {
-      brandSubEl.innerHTML = cfg.storeSubtitle;
-    }
-    // If cfg.storeSubtitle is not explicitly defined, preserve the text set in index.html
-  }
-
-  // 3. Safe Text Nodes Traversal & Replacement
-  const searchRegName = /Putra Btt Store|Rain Store|HuraaFashion|Huraa Fashion|𝑹𝒂𝒊𝒏 𝑺𝒕𝒐𝒓𝒆|Rainztore|Peony Store/gi;
-  const searchRegShort = /\bPBS\b/g;
-  const searchRegWa = /6282340915319|6283865477000/g;
-  const searchRegTele = /AutoOrderPBS_bot/gi;
-  const searchRegWeb = /putrabttstore\.web\.id/gi;
-  const searchRegEmail = /admin@putrabttstore\.web\.id/gi;
-
-  function walkTextNodes(node) {
-    if (node.nodeType === Node.TEXT_NODE) {
-      let val = node.nodeValue;
-      if (val) {
-        let changed = false;
-        if (val.match(searchRegName)) {
-          val = val.replace(searchRegName, cfg.storeName);
-          changed = true;
-        }
-        if (val.match(searchRegShort)) {
-          val = val.replace(searchRegShort, cfg.shortStoreName);
-          changed = true;
-        }
-        if (val.match(searchRegWa)) {
-          val = val.replace(searchRegWa, cfg.whatsappNumber);
-          changed = true;
-        }
-        if (val.match(searchRegTele)) {
-          val = val.replace(searchRegTele, cfg.telegramUsername);
-          changed = true;
-        }
-        if (val.match(searchRegWeb)) {
-          val = val.replace(searchRegWeb, (cfg.websiteUrl || '').replace(/^https?:\/\//i, ''));
-          changed = true;
-        }
-        if (val.match(searchRegEmail)) {
-          val = val.replace(searchRegEmail, cfg.emailAdmin || '');
-          changed = true;
-        }
-        if (changed) {
-          node.nodeValue = val;
-        }
-      }
-    } else if (node.nodeName !== 'SCRIPT' && node.nodeName !== 'STYLE') {
-      // Also check placeholder and alt attributes
-      if (node.getAttribute) {
-        const ph = node.getAttribute('placeholder');
-        if (ph && ph.match(searchRegName)) {
-          node.setAttribute('placeholder', ph.replace(searchRegName, cfg.storeName));
-        }
-        const alt = node.getAttribute('alt');
-        if (alt && alt.match(searchRegName)) {
-          node.setAttribute('alt', alt.replace(searchRegName, cfg.storeName));
-        }
-      }
-      for (let i = 0; i < node.childNodes.length; i++) {
-        walkTextNodes(node.childNodes[i]);
-      }
-    }
-  }
-
-  if (document.body) {
-    walkTextNodes(document.body);
-  }
-
-  // 4. Update Anchor Hrefs
-  const links = document.querySelectorAll('a[href]');
-  links.forEach(link => {
-    let href = link.getAttribute('href');
-    if (href) {
-      if (cfg.whatsappNumber) href = href.replace(/6282340915319/g, cfg.whatsappNumber);
-      if (cfg.telegramUsername) href = href.replace(/AutoOrderPBS_bot/g, cfg.telegramUsername);
-      if (cfg.websiteUrl) href = href.replace(/putrabttstore\.web\.id/g, cfg.websiteUrl.replace(/^https?:\/\//i, ''));
-      if (cfg.emailAdmin) href = href.replace(/admin@putrabttstore\.web\.id/g, cfg.emailAdmin);
-
-      // Handle WhatsApp URL scheme formatting
-      if (href.startsWith('https://wa.me/')) {
-        try {
-          const urlObj = new URL(href);
-          const textParam = urlObj.searchParams.get('text');
-          if (textParam) {
-            urlObj.searchParams.set('text', textParam.replace(/Putra Btt Store|Rain Store|HuraaFashion/gi, cfg.storeName).replace(/\bPBS\b/g, cfg.shortStoreName));
-          }
-          href = urlObj.toString();
-        } catch (e) {
-          href = href.replace(/Putra Btt Store|Rain Store|HuraaFashion/gi, cfg.storeName).replace(/\bPBS\b/g, cfg.shortStoreName);
-        }
-      } else if (href.startsWith('https://t.me/') && cfg.telegramLink) {
-        href = cfg.telegramLink;
-      } else if (href.includes('putrabttstore.web.id') && cfg.websiteUrl) {
-        href = cfg.websiteUrl;
-      }
-
-      link.setAttribute('href', href);
-    }
-  });
-
-  // 5. Update elements with data-copy attributes
-  const copyBtns = document.querySelectorAll('[data-copy]');
-  copyBtns.forEach(btn => {
-    let val = btn.getAttribute('data-copy');
-    if (val && cfg.whatsappNumber) {
-      val = val.replace(/6282340915319/g, cfg.whatsappNumber);
-      btn.setAttribute('data-copy', val);
-    }
-  });
-
-  // 6. Update QRIS images, T&C & Footer Buttons
+  // Update QRIS images jika ada
   if (cfg.qrisImagePath) {
     const qrisImages = document.querySelectorAll('img[src="qris.png"], img[alt*="QRIS"]');
     qrisImages.forEach(img => {
@@ -322,29 +183,25 @@ function applyDynamicBranding() {
     });
   }
 
+  // Update href tombol WA/Telegram jika masih '#'
   const waBtns = document.querySelectorAll('#tncWaBtn, .footer-wa-btn');
-  waBtns.forEach(tncWaBtn => {
-    if (tncWaBtn && cfg.whatsappNumber) {
-      tncWaBtn.href = `https://wa.me/${String(cfg.whatsappNumber).replace(/[^0-9]/g, '')}`;
+  waBtns.forEach(btn => {
+    if (btn && (btn.getAttribute('href') === '#' || !btn.getAttribute('href')) && cfg.whatsappNumber) {
+      btn.href = `https://wa.me/${String(cfg.whatsappNumber).replace(/[^0-9]/g, '')}`;
     }
   });
 
   const teleBtns = document.querySelectorAll('#tncTeleBtn, .footer-tele-btn');
-  teleBtns.forEach(tncTeleBtn => {
-    if (tncTeleBtn && (cfg.telegramLink || cfg.telegramUsername)) {
-      tncTeleBtn.href = cfg.telegramLink || `https://t.me/${cfg.telegramUsername}`;
+  teleBtns.forEach(btn => {
+    if (btn && (btn.getAttribute('href') === '#' || !btn.getAttribute('href')) && (cfg.telegramLink || cfg.telegramUsername)) {
+      btn.href = cfg.telegramLink || `https://t.me/${cfg.telegramUsername}`;
     }
   });
 
   const footerYear = document.getElementById('footerYear');
-  if (footerYear) {
+  if (footerYear && !footerYear.textContent.trim()) {
     footerYear.textContent = new Date().getFullYear();
   }
-
-  const footerBrand = document.querySelectorAll('.footer-brand-name');
-  footerBrand.forEach(el => {
-    if (cfg.storeName) el.textContent = cfg.storeName;
-  });
 }
 
 // Export function globally

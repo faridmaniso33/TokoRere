@@ -2,7 +2,7 @@
 const SHEET_ID = window.CONFIG?.sheetIdProducts || "1S_Qx2ESPq4LzHSBMhvchRF0EkHaQR1fSDtfx9e_vM9w";
 const SHEET_NAME = window.CONFIG?.sheetNameProducts || "Produk";
 const SHEET_TNC_NAME = window.CONFIG?.sheetNameTnc || "tnc";
-const DEFAULT_WA = window.CONFIG?.whatsappNumber || "6283865477000";
+const DEFAULT_WA = window.CONFIG?.whatsappNumber || "6281350758516";
 const SHEET_JSON_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
 const SHEET_TNC_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_TNC_NAME)}`;
 
@@ -227,7 +227,7 @@ function getFullProductName(item) {
 }
 
 function buildSingleVariantWALink(v, defaultWaGroup) {
-  const storeName = window.CONFIG?.storeName || "Peony Store";
+  const storeName = document.querySelector('.header-title')?.textContent?.trim() || window.CONFIG?.storeName || "Toko Rere";
   const now = new Date();
   const timeStr = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }).replace('.', ':');
   const dateStr = now.toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: 'numeric' });
@@ -571,7 +571,7 @@ function updateCartUI() {
   const dateStr = now.toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: 'numeric' });
   const dateTimeFormatted = `${timeStr}, ${dateStr}`;
 
-  const storeName = window.CONFIG?.storeName || "Peony Store";
+  const storeName = document.querySelector('.header-title')?.textContent?.trim() || window.CONFIG?.storeName || "Toko Rere";
   const buyerNameVal = document.getElementById("buyerName")?.value.trim();
   const buyerName = buyerNameVal || "Nama Pemesan";
   const paymentVal = document.getElementById("paymentMethod")?.value || "dana/qris/spay";
