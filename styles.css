@@ -8,11 +8,11 @@
 
 :root {
   /* Toko Rere Palette */
-  --pink-hot:    #FF4E9E;
-  --pink-mid:    #FF73B3; 
-  --pink-light:  #FFE1ED;
-  --pink-pale:   #FFF0F6;
-  --pink-border: rgba(255,78,158,0.35);
+  --pink-hot:    #fcb7ce;
+  --pink-mid:    #f7a3be; 
+  --pink-light:  #fde8ef;
+  --pink-pale:   #fff5f8;
+  --pink-border: rgba(252,183,206,0.45);
 
   --blue-sky:    #9DBBEE;
   --blue-mid:    #8385D1;
@@ -30,14 +30,14 @@
   --muted:       #A38B98;
   --muted-lt:    #D5C4D1;
 
-  --primary-color:       #FF4E9E;
-  --primary-color-hover: #E63E8A;
-  --primary-light:       #FFE1ED;
-  --secondary-color:     #FF4E9E;
+  --primary-color:       #fcb7ce;
+  --primary-color-hover: #f29eb9;
+  --primary-light:       #fde8ef;
+  --secondary-color:     #fcb7ce;
   --accent-color:        #FFD13B;
 
-  --border:      rgba(255,78,158,0.25);
-  --border-mid:  rgba(255,78,158,0.4);
+  --border:      rgba(252,183,206,0.35);
+  --border-mid:  rgba(252,183,206,0.55);
   --border-radius: 20px;
 
   --danger:      #D9777F;
@@ -54,10 +54,10 @@ body {
   background:
     linear-gradient(
       180deg,
-      #FF4E9E 0px,
-      #FF73B3 120px,
-      #FFE1ED 250px,
-      #FFF0F6 400px,
+      #fcb7ce 0px,
+      #f7a3be 120px,
+      #fde8ef 250px,
+      #fff5f8 400px,
       var(--offwhite) 600px
     );
   background-attachment: fixed;
@@ -71,7 +71,7 @@ body {
    HEADER
    ══════════════════════════════════════════════ */
 header {
-  background: linear-gradient(135deg, #FF4E9E 0%, #FF73B3 60%, #FFD13B 100%);
+  background: linear-gradient(135deg, #fcb7ce 0%, #f7a3be 60%, #FFD13B 100%);
   color: var(--white);
   padding: 0;
   position: relative;

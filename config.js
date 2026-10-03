@@ -25,11 +25,11 @@ window.CONFIG = {
 
   // Custom Theme Colors (Only used if activeTheme is set to "custom")
   customTheme: {
-    primary: "#FF4E9E",       // Pink Dominan
-    primaryHover: "#E63E8A",  // Pink Hover
-    primaryLight: "#FFE1ED",  // Pink Light
-    secondary: "#FF4E9E",     // Pink instead of Blue
-    accent: "#FFD13B"         // Yellow
+    primary: "#fcb7ce",       // Soft Pink Utama
+    primaryHover: "#f29eb9",  // Pink Hover
+    primaryLight: "#fde8ef",  // Pink Light
+    secondary: "#fcb7ce",     // Secondary Color
+    accent: "#FFD13B"         // Yellow Accent
   }
 };
 
