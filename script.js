@@ -454,10 +454,11 @@ async function loadTncFromSheet() {
 }
 
 function renderTncAccordions(tncList) {
-  const container = document.querySelector("#page-tnc .tnc-container");
-  if (!container) return;
-
-  const contactCard = container.querySelector(".tnc-contact-card");
+  const accordionListEl = document.getElementById("tncAccordionList");
+  if (!accordionListEl) {
+    const container = document.querySelector("#page-tnc .tnc-container");
+    if (!container) return;
+  }
 
   const accordionsHTML = tncList.map((item, index) => {
     const isOpen = index === 0 ? "open" : "";
@@ -491,8 +492,14 @@ function renderTncAccordions(tncList) {
       </div>`;
   }).join("");
 
-  const contactCardHTML = contactCard ? contactCard.outerHTML : "";
-  container.innerHTML = accordionsHTML + contactCardHTML;
+  if (accordionListEl) {
+    accordionListEl.innerHTML = accordionsHTML;
+  } else {
+    const container = document.querySelector("#page-tnc .tnc-container");
+    const contactCard = container.querySelector(".tnc-contact-card");
+    const contactCardHTML = contactCard ? contactCard.outerHTML : "";
+    container.innerHTML = accordionsHTML + contactCardHTML;
+  }
 }
 
 // ===== Cart & Wishlist Logic =====
