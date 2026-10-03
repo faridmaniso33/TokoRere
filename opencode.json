@@ -8,8 +8,8 @@
         "apiKey": "sk-dd280c071621651a-xby4wm-1e189a5b"
       },
       "models": {
-        "ag/gemini-3.7-flash-high": {
-          "name": "ag/gemini-3.7-flash-high",
+        "ag/claude-opus-4-6-thinking": {
+          "name": "ag/claude-opus-4-6-thinking",
           "modalities": {
             "input": [
               "text",
@@ -23,7 +23,7 @@
       }
     }
   },
-  "model": "9router/ag/gemini-3.7-flash-high",
+  "model": "9router/ag/claude-opus-4-6-thinking",
   "agent": {
     "explorer": {
       "description": "Fast explorer subagent for codebase exploration",
